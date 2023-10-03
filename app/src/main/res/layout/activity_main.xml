@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <fragment
+        android:id="@+id/customer_details"
+        android:name="com.example.weatherapp.presentation.weather_screen.fragment.WeatherFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_weather"  android:layout_height="match_parent" android:layout_width="match_parent">
+    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
