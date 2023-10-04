@@ -12,16 +12,3 @@ data class WeatherDto(
     val timezone: String ,
     val timezone_offset: Int
 )
-
-fun WeatherDto.toWeatherDtoModel(): WeatherDtoModel {
-    return WeatherDtoModel(
-        current ,
-        daily ,
-        hourly ,
-        lat ,
-        lon ,
-        minutely ,
-        timezone ,
-        timezone_offset
-    )
-}

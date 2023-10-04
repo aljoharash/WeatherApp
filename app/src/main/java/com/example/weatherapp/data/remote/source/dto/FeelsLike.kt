@@ -8,7 +8,3 @@ data class FeelsLike(
     val morn: Double ,
     val night: Double
 )
-
-fun FeelsLike.toFeelsLikeModel(): FeelsLikeModel {
-    return FeelsLikeModel(day , eve , morn , night)
-}

@@ -24,28 +24,3 @@ data class Daily(
     val wind_gust: Double ,
     val wind_speed: Double
 )
-
-fun Daily.toDailyModel(): DailyModel {
-    return DailyModel(
-        clouds ,
-        dew_point ,
-        dt ,
-        feels_like ,
-        humidity ,
-        moon_phase ,
-        moonrise ,
-        moonset ,
-        pop ,
-        pressure ,
-        rain ,
-        summary ,
-        sunrise ,
-        sunset ,
-        temp ,
-        uvi ,
-        weather ,
-        wind_deg ,
-        wind_gust ,
-        wind_speed
-    )
-}

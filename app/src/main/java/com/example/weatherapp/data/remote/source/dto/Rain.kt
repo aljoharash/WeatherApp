@@ -6,6 +6,3 @@ data class Rain(
     val `1h`: Double
 )
 
-fun Rain.toRainModel(): RainModel{
-    return RainModel(`1h`)
-}

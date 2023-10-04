@@ -7,7 +7,3 @@ data class Minutely(
     val precipitation: Int
 )
 
-fun Minutely.toMinutelyModel(): MinutelyModel {
-    return MinutelyModel(dt, precipitation)
-}
-

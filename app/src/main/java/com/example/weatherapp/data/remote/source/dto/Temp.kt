@@ -10,7 +10,3 @@ data class Temp(
     val morn: Double ,
     val night: Double
 )
-
-fun Temp.toTempModel(): TempModel {
-    return TempModel(day , eve , max , min , morn , night)
-}

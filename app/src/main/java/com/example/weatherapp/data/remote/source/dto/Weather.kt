@@ -8,7 +8,3 @@ data class Weather(
     val id: Int ,
     val main: String
 )
-
-fun Weather.toWeatherModel(): WeatherModel {
-    return WeatherModel(description , icon , id , main)
-}

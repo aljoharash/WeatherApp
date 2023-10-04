@@ -18,22 +18,3 @@ data class Current(
     val wind_deg: Int ,
     val wind_speed: Double
 )
-
-fun Current.toCurrentModel(): CurrentModel {
-    return CurrentModel(
-        clouds ,
-        dew_point ,
-        dt ,
-        feels_like ,
-        humidity ,
-        pressure ,
-        sunrise ,
-        sunset ,
-        temp ,
-        uvi ,
-        visibility ,
-        weather ,
-        wind_deg ,
-        wind_speed
-    )
-}

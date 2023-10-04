@@ -19,23 +19,3 @@ data class Hourly(
     val wind_gust: Double ,
     val wind_speed: Double
 )
-
-fun Hourly.toHourlyModel(): HourlyModel {
-    return HourlyModel(
-        clouds ,
-        dew_point ,
-        dt ,
-        feels_like ,
-        humidity ,
-        pop ,
-        pressure ,
-        rain ,
-        temp ,
-        uvi ,
-        visibility ,
-        weather ,
-        wind_deg ,
-        wind_gust ,
-        wind_speed
-    )
-}
