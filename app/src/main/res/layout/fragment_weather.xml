@@ -13,8 +13,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -33,6 +35,21 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/refreshButton"
+                android:layout_width="34dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/refresh_button"
+                android:scaleType="centerInside"
+                android:src="@drawable/refresh_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.909"
+                app:layout_constraintStart_toEndOf="@+id/title"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -135,8 +152,8 @@
                 android:id="@+id/humidity_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -175,8 +192,8 @@
                 android:id="@+id/feels_like_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -215,8 +232,8 @@
                 android:id="@+id/wind_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -240,7 +257,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/info_container"
                 app:layout_constraintVertical_bias="0.392" />
-
 
 
             <Space

@@ -37,6 +37,7 @@ class WeatherFragment : Fragment() {
             weatherViewModel.state.collect { state ->
                 state.let {
                     setWeatherInfo()
+                    refresh()
                 }
             }
         }
@@ -69,6 +70,12 @@ class WeatherFragment : Fragment() {
             weatherViewModel.state.value.weatherInfo?.current?.feels_like.toString()
 
 
+    }
+
+    private fun refresh(){
+        binding?.refreshButton?.setOnClickListener {
+            weatherViewModel.getWeather()
+        }
     }
 
 
