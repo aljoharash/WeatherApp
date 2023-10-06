@@ -2,6 +2,7 @@ package com.example.weatherapp.di
 
 import android.app.Application
 import android.content.Context
+import com.example.weatherapp.common.LocationUtils
 import com.example.weatherapp.data.location.DefaultLocationTracker
 import com.example.weatherapp.domain.location.LocationTracker
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -40,6 +41,12 @@ object LocationModule {
         application: Application
     ): Context {
         return application
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationUtils(context: Context): LocationUtils {
+        return LocationUtils(context)
     }
 
 
