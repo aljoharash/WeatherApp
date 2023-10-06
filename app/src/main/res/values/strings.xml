@@ -3,4 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="weather_container">weather container</string>
+    <string name="deg">°</string>
+    <string name="temp_degree">%1$s°</string>
+
 </resources>

@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#D5D5D5</color>
-    <color name="bg_start">#08244F</color>
-    <color name="bg_end">#134CB5</color>
-    <color name="bg_center">#0B42AB</color>
+    <color name="bg_start">#103368</color>
+    <color name="bg_end">#5B74A5</color>
+    <color name="bg_center">#3763B9</color>
     <color name="container">#001026</color>
 
 
