@@ -1,11 +1,9 @@
 package com.example.weatherapp.presentation.weather_screen.viewmodel
 
-import android.content.Context
-import android.location.Geocoder
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherapp.common.LocationUtils
 import com.example.weatherapp.data.util.Resource
 import com.example.weatherapp.domain.location.LocationTracker
 import com.example.weatherapp.domain.usecase.GetWeatherUseCase
@@ -13,14 +11,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val weatherUseCase: GetWeatherUseCase ,
     private val locationTracker: LocationTracker ,
-    private val context: Context
+    private val locationUtils: LocationUtils
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(WeatherState())
@@ -28,6 +25,14 @@ class WeatherViewModel @Inject constructor(
 
     init {
         getWeather()
+    }
+
+    fun onEvent(event: WeatherEvent){
+        when(event){
+            is WeatherEvent.UnitChanged -> {
+                _state.value = _state.value.copy(units = event.unit)
+            }
+        }
     }
 
     fun getWeather() {
@@ -38,11 +43,11 @@ class WeatherViewModel @Inject constructor(
             )
 
             locationTracker.getCurrentLocation()?.let { location ->
-                when(val result = weatherUseCase.invoke(location.latitude, location.longitude)){
+                when(val result = weatherUseCase.invoke(location.latitude, location.longitude, _state.value.units)){
                     is Resource.Success -> {
                         _state.value = _state.value.copy(
                             weatherInfo = result.data ,
-                            city = getCityName(location.latitude, location.longitude),
+                            city = locationUtils.getCityName(location.latitude, location.longitude),
                             isLoading = false,
                             error = null
                         )
@@ -50,7 +55,7 @@ class WeatherViewModel @Inject constructor(
                     is Resource.Failure -> {
                         _state.value = _state.value.copy(
                             weatherInfo = null ,
-                            city = getCityName(location.latitude, location.longitude),
+                            city = locationUtils.getCityName(location.latitude, location.longitude),
                             isLoading = true,
                             error = result.exception.toString()
                         )
@@ -65,19 +70,5 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-
-    private fun getCityName(lat: Double,long: Double): String? {
-        var cityName: String?
-        val geoCoder = Geocoder(context, Locale.getDefault())
-        val address = geoCoder.getFromLocation(lat,long,1)
-        cityName = address?.get(0)?.adminArea
-        if (cityName == null){
-            cityName = address?.get(0)?.locality
-            if (cityName == null){
-                cityName = address?.get(0)?.subAdminArea
-            }
-        }
-        return cityName
-    }
 
 }

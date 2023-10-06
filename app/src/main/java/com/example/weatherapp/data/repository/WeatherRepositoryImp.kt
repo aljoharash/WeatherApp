@@ -11,9 +11,9 @@ class WeatherRepositoryImp @Inject constructor(
     private val api: WeatherAPI
 ) : WeatherRepository {
 
-    override suspend fun getWeather(lat: Double , lon: Double): Resource<WeatherDtoModel> {
+    override suspend fun getWeather(lat: Double , lon: Double, units: String): Resource<WeatherDtoModel> {
         return try {
-            Resource.Success(api.getWeather(lat, lon))
+            Resource.Success(api.getWeather(lat, lon, units))
         } catch (e: Exception) {
             e.printStackTrace()
             Resource.Failure(e)

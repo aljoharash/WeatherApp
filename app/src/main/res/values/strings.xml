@@ -4,7 +4,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="weather_container">weather container</string>
     <string name="deg">°</string>
-    <string name="temp_degree">%1$s°</string>
+    <string name="temp_degree">%1$s%2$s°</string>
     <string name="refresh_button">refresh button</string>
+    <string name="weather_description">Weather Description</string>
+    <string name="humidity_icon">humidity icon</string>
+    <string name="humidity">Humidity</string>
+    <string name="feels_like_icon">feels like icon</string>
+    <string name="feels_like">Feels like</string>
+    <string name="wind_icon">wind icon</string>
+    <string name="wind">Wind</string>
+    <string name="today_s_weather">Today\'s Weather</string>
+    <string name="city">City</string>
+    <string name="weather_icon">weather icon</string>
+    <string name="to_c">to °C</string>
+    <string name="to_f">to °F</string>
 
 </resources>

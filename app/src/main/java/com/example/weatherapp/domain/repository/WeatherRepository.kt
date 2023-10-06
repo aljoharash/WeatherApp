@@ -5,5 +5,5 @@ import com.example.weatherapp.domain.model.WeatherDtoModel
 
 interface WeatherRepository {
 
-    suspend fun getWeather(lat: Double, lon: Double): Resource<WeatherDtoModel>
+    suspend fun getWeather(lat: Double, lon: Double, units: String): Resource<WeatherDtoModel>
 }
