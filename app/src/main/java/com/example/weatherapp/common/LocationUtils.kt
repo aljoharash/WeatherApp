@@ -2,6 +2,7 @@ package com.example.weatherapp.common
 
 import android.content.Context
 import android.location.Geocoder
+import com.example.weatherapp.data.util.Resource
 import java.util.Locale
 
 class LocationUtils(private val context: Context) {
@@ -19,6 +20,7 @@ class LocationUtils(private val context: Context) {
             cityName = address?.get(0)?.adminArea
         } catch (e: Exception){
             e.printStackTrace()
+            Resource.Failure(Exception("Could not retrieve city name"))
         }
         return cityName
     }
