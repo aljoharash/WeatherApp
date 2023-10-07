@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.presentation.weather_screen.viewmodel.WeatherEvent
 import com.example.weatherapp.presentation.weather_screen.viewmodel.WeatherViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -45,6 +47,7 @@ class WeatherFragment : Fragment() {
                     unitConversion()
                     setWeatherInfo()
                     setRecyclerView()
+                    displayErrorMsg()
                 }
             }
         }
@@ -81,6 +84,7 @@ class WeatherFragment : Fragment() {
         }
     }
 
+
     /*
     This function triggers a request to refresh the weather data from the API.
     It's responsible for initiating the data retrieval process and updating the UI
@@ -91,6 +95,7 @@ class WeatherFragment : Fragment() {
             weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
         }
     }
+
 
     /*
     This function is responsible for setting up the RecyclerView with a list
@@ -163,15 +168,17 @@ class WeatherFragment : Fragment() {
    */
     private fun unitConversion() {
         binding?.temperatureToggleButton?.setOnCheckedChangeListener { _ , isChecked ->
-            if (isChecked) {
-                weatherViewModel.onEvent(WeatherEvent.UnitChanged("imperial"))
-                weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
-            } else {
-                weatherViewModel.onEvent(WeatherEvent.UnitChanged("metric"))
-                weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
-            }
+            val unit = if (isChecked) "imperial" else "metric"
+            weatherViewModel.onEvent(WeatherEvent.UnitChanged(unit))
+            weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
         }
     }
 
+    private fun displayErrorMsg(){
+        val errorMsg = weatherViewModel.state.value.error
+        if (!errorMsg.isNullOrBlank()) {
+            Snackbar.make(requireView(), errorMsg, Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }
