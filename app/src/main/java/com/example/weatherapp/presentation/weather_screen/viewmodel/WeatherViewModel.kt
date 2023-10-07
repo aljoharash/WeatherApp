@@ -55,7 +55,6 @@ class WeatherViewModel @Inject constructor(
                                 location.latitude ,
                                 location.longitude
                             ) ,
-                            isLoading = false ,
                             error = null
                         )
                     }
@@ -67,13 +66,10 @@ class WeatherViewModel @Inject constructor(
                                 location.latitude ,
                                 location.longitude
                             ) ,
-                            isLoading = true ,
                             error = result.exception.toString()
                         )
 
                     }
-
-                    is Resource.Loading -> {}
                 }
             }
 
