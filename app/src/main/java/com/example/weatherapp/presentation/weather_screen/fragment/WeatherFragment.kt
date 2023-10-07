@@ -62,7 +62,7 @@ class WeatherFragment : Fragment() {
     private fun setWeatherInfo() {
         val weatherState = weatherViewModel.state.value
         binding?.apply {
-            city.text = weatherState.city
+            cityTextView.text = weatherState.city
             degreeTextView.text =
                 getString(
                     R.string.temp_degree ,
