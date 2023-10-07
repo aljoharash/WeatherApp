@@ -47,7 +47,7 @@ class WeatherMappers {
     }
 
     fun Minutely.toMinutelyModel(): MinutelyModel {
-        return MinutelyModel(dt, precipitation)
+        return MinutelyModel(dt , precipitation)
     }
 
     fun Hourly.toHourlyModel(): HourlyModel {

@@ -6,16 +6,19 @@ import java.util.Locale
 
 class LocationUtils(private val context: Context) {
 
+    /*
+    This function is responsible for converting latitude and longitude coordinates
+    to get the City Name
+    */
+    @Suppress("DEPRECATION")
     fun getCityName(lat: Double, long: Double): String? {
-        var cityName: String?
+        var cityName: String? = ""
         val geoCoder = Geocoder(context, Locale.getDefault())
-        val address = geoCoder.getFromLocation(lat, long, 1)
-        cityName = address?.get(0)?.adminArea
-        if (cityName == null) {
-            cityName = address?.get(0)?.locality
-            if (cityName == null) {
-                cityName = address?.get(0)?.subAdminArea
-            }
+        try {
+            val address = geoCoder.getFromLocation(lat , long , 1)
+            cityName = address?.get(0)?.adminArea
+        } catch (e: Exception){
+            e.printStackTrace()
         }
         return cityName
     }

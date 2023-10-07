@@ -23,19 +23,19 @@ class WeatherViewModel @Inject constructor(
     private val _state = MutableStateFlow(WeatherState())
     val state = _state.asStateFlow()
 
-    init {
-        getWeather()
-    }
 
-    fun onEvent(event: WeatherEvent){
-        when(event){
+    fun onEvent(event: WeatherEvent) {
+        when (event) {
             is WeatherEvent.UnitChanged -> {
                 _state.value = _state.value.copy(units = event.unit)
+            }
+            is WeatherEvent.GetWeatherInfo -> {
+                getWeatherInfo()
             }
         }
     }
 
-    fun getWeather() {
+    private fun getWeatherInfo() {
         viewModelScope.launch {
             Log.d(
                 "USER_LOCATION" ,
@@ -43,24 +43,36 @@ class WeatherViewModel @Inject constructor(
             )
 
             locationTracker.getCurrentLocation()?.let { location ->
-                when(val result = weatherUseCase.invoke(location.latitude, location.longitude, _state.value.units)){
+                when (val result = weatherUseCase.invoke(
+                    location.latitude ,
+                    location.longitude ,
+                    _state.value.units
+                )) {
                     is Resource.Success -> {
                         _state.value = _state.value.copy(
                             weatherInfo = result.data ,
-                            city = locationUtils.getCityName(location.latitude, location.longitude),
-                            isLoading = false,
+                            city = locationUtils.getCityName(
+                                location.latitude ,
+                                location.longitude
+                            ) ,
+                            isLoading = false ,
                             error = null
                         )
                     }
+
                     is Resource.Failure -> {
                         _state.value = _state.value.copy(
                             weatherInfo = null ,
-                            city = locationUtils.getCityName(location.latitude, location.longitude),
-                            isLoading = true,
+                            city = locationUtils.getCityName(
+                                location.latitude ,
+                                location.longitude
+                            ) ,
+                            isLoading = true ,
                             error = result.exception.toString()
                         )
 
                     }
+
                     is Resource.Loading -> {}
                 }
             }

@@ -15,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object APIModule {
-
     @Provides
     @Singleton
     fun provideApi(): WeatherAPI {
@@ -28,10 +27,9 @@ object APIModule {
 
     @Provides
     @Singleton
-    fun provideWeatherRepository(api: WeatherAPI): WeatherRepository{
+    fun provideWeatherRepository(api: WeatherAPI): WeatherRepository {
         return WeatherRepositoryImp(api)
     }
-
 
 
 }

@@ -37,12 +37,13 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
+        refreshButton()
+
         viewLifecycleOwner.lifecycleScope.launch {
             weatherViewModel.state.collect { state ->
                 state.let {
                     unitConversion()
                     setWeatherInfo()
-                    refreshButton()
                     setRecyclerView()
                 }
             }
@@ -80,18 +81,27 @@ class WeatherFragment : Fragment() {
         }
     }
 
+    /*
+    This function triggers a request to refresh the weather data from the API.
+    It's responsible for initiating the data retrieval process and updating the UI
+    with the latest weather information.
+    */
     private fun refreshButton() {
         binding?.refreshButton?.setOnClickListener {
-            weatherViewModel.getWeather()
+            weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
         }
     }
 
+    /*
+    This function is responsible for setting up the RecyclerView with a list
+    of 7-day weather forecast.
+    */
     private fun setRecyclerView() {
         val weatherDailyInfo = weatherViewModel.state.value.weatherInfo?.daily
 
         val weatherDailyList = weatherDailyInfo?.map { info ->
 
-            val day = getDayName(info.dt)
+            val day = convertTimestampToDayOfWeek(info.dt)
             val weatherIcon = info.weather[0].icon
             val iconResource = getWeatherIcon(weatherIcon)
             val tempMax = getString(R.string.temp_degree , "H:" , info.temp.max.toString())
@@ -105,6 +115,11 @@ class WeatherFragment : Fragment() {
         binding?.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
     }
 
+
+    /*
+     This function is responsible for setting up weather icons for each day
+     based on the data retrieved from the API response.
+    */
     private fun getWeatherIcon(iconString: String?): Int {
         val iconMappings = mapOf(
             "01d" to R.drawable.icon_01d ,
@@ -131,20 +146,29 @@ class WeatherFragment : Fragment() {
 
     }
 
-    private fun getDayName(timestamp: Int): String {
+
+    /*
+    Converts a Unix timestamp to the corresponding day of the week.
+   */
+    private fun convertTimestampToDayOfWeek(timestamp: Int): String {
         val dateFormat = SimpleDateFormat("EEEE" , Locale.getDefault())
         val date = Date(timestamp.toLong() * 1000) // Convert seconds to milliseconds
         return dateFormat.format(date)
     }
 
+    /*
+    Converts temperature unit
+    Celsius to Fahrenheit
+    then refreshes the weather data
+   */
     private fun unitConversion() {
         binding?.temperatureToggleButton?.setOnCheckedChangeListener { _ , isChecked ->
             if (isChecked) {
                 weatherViewModel.onEvent(WeatherEvent.UnitChanged("imperial"))
-                weatherViewModel.getWeather()
+                weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
             } else {
                 weatherViewModel.onEvent(WeatherEvent.UnitChanged("metric"))
-                weatherViewModel.getWeather()
+                weatherViewModel.onEvent(WeatherEvent.GetWeatherInfo)
             }
         }
     }

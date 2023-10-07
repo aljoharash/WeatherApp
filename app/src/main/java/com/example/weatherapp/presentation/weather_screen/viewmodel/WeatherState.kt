@@ -1,7 +1,6 @@
 package com.example.weatherapp.presentation.weather_screen.viewmodel
 
 import com.example.weatherapp.domain.model.WeatherDtoModel
-import com.example.weatherapp.presentation.weather_screen.fragment.ForecastData
 
 data class WeatherState(
     val weatherInfo: WeatherDtoModel? = null ,
