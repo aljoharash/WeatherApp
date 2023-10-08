@@ -7,8 +7,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.weatherapp.R
-import com.example.weatherapp.presentation.weather_screen.viewmodel.WeatherEvent
-import com.example.weatherapp.presentation.weather_screen.viewmodel.WeatherViewModel
+import com.example.weatherapp.presentation.weatherScreen.viewmodel.WeatherEvent
+import com.example.weatherapp.presentation.weatherScreen.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

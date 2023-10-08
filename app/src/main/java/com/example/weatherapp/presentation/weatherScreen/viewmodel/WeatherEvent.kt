@@ -1,4 +1,4 @@
-package com.example.weatherapp.presentation.weather_screen.viewmodel
+package com.example.weatherapp.presentation.weatherScreen.viewmodel
 
 sealed class WeatherEvent {
     data class UnitChanged(val unit: String) : WeatherEvent()

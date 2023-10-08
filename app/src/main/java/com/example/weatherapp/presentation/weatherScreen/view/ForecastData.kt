@@ -1,4 +1,4 @@
-package com.example.weatherapp.presentation.weather_screen.fragment
+package com.example.weatherapp.presentation.weatherScreen.view
 
 data class ForecastData(
     val dayName: String ,

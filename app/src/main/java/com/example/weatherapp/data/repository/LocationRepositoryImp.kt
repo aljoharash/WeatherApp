@@ -1,11 +1,11 @@
-package com.example.weatherapp.data.location
+package com.example.weatherapp.data.repository
 
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.content.ContextCompat
-import com.example.weatherapp.domain.location.LocationTracker
+import com.example.weatherapp.domain.repository.LocationRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -17,10 +17,10 @@ This class implementation was guided by ChatGPT,
 due to unfamiliarity with utilizing location services in Kotlin.
 */
 @ExperimentalCoroutinesApi
-class DefaultLocationTracker @Inject constructor(
+class LocationRepositoryImp @Inject constructor(
     private val locationClient: FusedLocationProviderClient ,
     private val context: Context
-) : LocationTracker {
+) : LocationRepository {
 
     override suspend fun getCurrentLocation(): Location? {
         return suspendCoroutine { continuation ->

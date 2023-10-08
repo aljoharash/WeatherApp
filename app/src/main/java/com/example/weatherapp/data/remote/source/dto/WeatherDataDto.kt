@@ -1,8 +1,6 @@
 package com.example.weatherapp.data.remote.source.dto
 
-import com.example.weatherapp.domain.model.WeatherModel
-
-data class Weather(
+data class WeatherDataDto(
     val description: String ,
     val icon: String ,
     val id: Int ,

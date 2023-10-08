@@ -2,13 +2,13 @@ package com.example.weatherapp.di
 
 import android.content.Context
 import android.net.ConnectivityManager
-import com.example.weatherapp.common.Constant
+import com.example.weatherapp.data.util.NetworkConstant
 import com.example.weatherapp.data.remote.WeatherAPI
-import com.example.weatherapp.data.repository.WeatherRepositoryImp
-import com.example.weatherapp.domain.repository.WeatherRepository
+import com.example.weatherapp.data.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,24 +21,16 @@ object APIModule {
     @Singleton
     fun provideApi(): WeatherAPI {
         return Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(NetworkConstant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherAPI::class.java)
     }
 
-    @Provides
     @Singleton
-    fun provideWeatherRepository(api: WeatherAPI, connectivityManager: ConnectivityManager): WeatherRepository {
-        return WeatherRepositoryImp(api, connectivityManager)
-    }
-
     @Provides
-    @Singleton
-    fun provideConnectivityManager(context: Context): ConnectivityManager {
-        return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }
-
-
+    fun provideNetworkUtility(
+        connectivityManager: ConnectivityManager ,
+    ) = NetworkUtil(connectivityManager)
 }
 

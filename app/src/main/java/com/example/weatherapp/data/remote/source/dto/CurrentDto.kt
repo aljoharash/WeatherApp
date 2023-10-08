@@ -1,8 +1,6 @@
-package com.example.weatherapp.domain.model
+package com.example.weatherapp.data.remote.source.dto
 
-import com.example.weatherapp.data.remote.source.dto.Weather
-
-data class CurrentModel(
+data class CurrentDto(
     val clouds: Int ,
     val dew_point: Double ,
     val dt: Int ,
@@ -14,7 +12,7 @@ data class CurrentModel(
     val temp: Double ,
     val uvi: Double ,
     val visibility: Int ,
-    val weather: List<Weather> ,
+    val weather: List<WeatherDataDto> ,
     val wind_deg: Int ,
     val wind_speed: Double
 )

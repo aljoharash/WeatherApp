@@ -1,6 +1,6 @@
-package com.example.weatherapp.domain.model
+package com.example.weatherapp.data.remote.source.dto
 
-data class FeelsLikeModel(
+data class FeelsLikeDto(
     val day: Double ,
     val eve: Double ,
     val morn: Double ,

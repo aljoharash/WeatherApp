@@ -1,8 +1,6 @@
 package com.example.weatherapp.data.remote.source.dto
 
-import com.example.weatherapp.domain.model.RainModel
-
-data class Rain(
+data class RainDto(
     val `1h`: Double
 )
 

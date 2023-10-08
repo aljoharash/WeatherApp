@@ -1,7 +1,8 @@
 package com.example.weatherapp.data.remote
 
-import com.example.weatherapp.common.Constant.API_KEY
-import com.example.weatherapp.domain.model.WeatherDtoModel
+import com.example.weatherapp.data.util.NetworkConstant.API_KEY
+import com.example.weatherapp.data.remote.source.dto.WeatherDto
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,6 +13,6 @@ interface WeatherAPI {
         @Query("lon") lon: Double ,
         @Query("units") units: String ,
         @Query("appid") apiKey: String = API_KEY
-    ): WeatherDtoModel
+    ): Response<WeatherDto>
 
 }

@@ -1,8 +1,10 @@
 package com.example.weatherapp.domain.usecase
 
+import com.example.weatherapp.data.remote.source.dto.WeatherDto
 import com.example.weatherapp.data.util.Resource
-import com.example.weatherapp.domain.model.WeatherDtoModel
 import com.example.weatherapp.domain.repository.WeatherRepository
+import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import javax.inject.Inject
 
 class GetWeatherUseCase @Inject constructor(
@@ -12,7 +14,7 @@ class GetWeatherUseCase @Inject constructor(
         lat: Double ,
         lon: Double ,
         units: String
-    ): Resource<WeatherDtoModel> {
+    ): Flow<Resource<Response<WeatherDto>>> {
         return repository.getWeather(lat , lon , units)
     }
 }

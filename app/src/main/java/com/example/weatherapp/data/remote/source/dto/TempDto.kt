@@ -1,8 +1,6 @@
 package com.example.weatherapp.data.remote.source.dto
 
-import com.example.weatherapp.domain.model.TempModel
-
-data class Temp(
+data class TempDto(
     val day: Double ,
     val eve: Double ,
     val max: Double ,
