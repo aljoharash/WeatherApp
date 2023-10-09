@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface WeatherRepository {
-    suspend fun getWeather(lat: Double , lon: Double , units: String): Flow<Resource<WeatherDto>>
+    suspend fun getWeather(lat: Double , lon: Double , units: String): Flow<Resource<Response<WeatherDto>>>
 }

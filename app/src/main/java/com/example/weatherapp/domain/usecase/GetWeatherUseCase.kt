@@ -14,7 +14,7 @@ class GetWeatherUseCase @Inject constructor(
         lat: Double ,
         lon: Double ,
         units: String
-    ): Flow<Resource<WeatherDto>> {
+    ): Flow<Resource<Response<WeatherDto>>> {
         return repository.getWeather(lat , lon , units)
     }
 }

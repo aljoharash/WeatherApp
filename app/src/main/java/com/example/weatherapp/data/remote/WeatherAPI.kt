@@ -13,6 +13,6 @@ interface WeatherAPI {
         @Query("lon") lon: Double ,
         @Query("units") units: String ,
         @Query("appid") apiKey: String = API_KEY
-    ): WeatherDto
+    ): Response<WeatherDto>
 
 }
