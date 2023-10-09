@@ -14,6 +14,7 @@ class NetworkUtil @Inject constructor(
     fun <T : Any> safeApiCall(
         apiCall: suspend () -> T ,
     ): Flow<Resource<T>> = flow {
+
         if (!isNetworkAvailable()) {
             emit(Resource.Failure(Exception("No internet connection")))
             return@flow
@@ -23,12 +24,24 @@ class NetworkUtil @Inject constructor(
             emit(Resource.Loading)
             val response = apiCall.invoke()
             emit(Resource.Success(response))
-        } catch (e: IOException) {
-            emit(Resource.Failure(Exception("Network Error")))
-        } catch (e: HttpException) {
-            emit(Resource.Failure(Exception("Unknown API Error")))
         } catch (e: Exception) {
-            emit(Resource.Failure(e))
+            val errorMessage = when (e) {
+                is IOException -> "Network Error"
+                is HttpException -> getErrorMessage(e.code())
+                else -> "Unknown Error: ${e.message}"
+            }
+            emit(Resource.Failure(Exception(errorMessage)))
+        }
+
+    }
+
+    private fun getErrorMessage(httpErrorCode: Int): String {
+        return when (httpErrorCode) {
+            400 -> "Bad Request: The server could not understand the request."
+            401 -> "Unauthorized: Authentication failed or user does not have permissions."
+            404 -> "Not Found: The requested resource was not found on the server."
+            500 -> "Internal Server Error: Something went wrong on the server."
+            else -> "Unknown Error: An unexpected error occurred."
         }
     }
 
