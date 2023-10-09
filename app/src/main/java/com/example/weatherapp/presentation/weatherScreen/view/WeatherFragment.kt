@@ -19,9 +19,6 @@ import com.example.weatherapp.presentation.weatherScreen.viewmodel.WeatherEvent
 import com.example.weatherapp.presentation.weatherScreen.viewmodel.WeatherViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class WeatherFragment : Fragment() {
 

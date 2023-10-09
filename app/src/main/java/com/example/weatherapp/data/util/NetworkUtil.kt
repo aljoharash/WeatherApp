@@ -3,6 +3,7 @@ package com.example.weatherapp.data.util
 import android.net.ConnectivityManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
@@ -11,26 +12,29 @@ class NetworkUtil @Inject constructor(
 ) {
 
     fun <T : Any> safeApiCall(
-        apiToBeCalled: suspend () -> T ,
+        apiCall: suspend () -> T ,
     ): Flow<Resource<T>> = flow {
-
-        val response = apiToBeCalled()
+        if (!isNetworkAvailable()) {
+            emit(Resource.Failure(Exception("No internet connection")))
+            return@flow
+        }
 
         try {
             emit(Resource.Loading)
-            val networkInfo = connectivityManager.activeNetworkInfo
-            if (networkInfo != null && networkInfo.type == ConnectivityManager.TYPE_WIFI) {
-                emit(Resource.Success(response))
-            } else {
-                emit(
-                    Resource.Failure(Exception("Please check you Wi-Fi"))
-                )
-            }
-        } catch (ex: IOException) {
-            emit(
-                Resource.Failure(Exception("Unexpected Error"))
-            )
+            val response = apiCall.invoke()
+            emit(Resource.Success(response))
+        } catch (e: IOException) {
+            emit(Resource.Failure(Exception("Network Error")))
+        } catch (e: HttpException) {
+            emit(Resource.Failure(Exception("Unknown API Error")))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
         }
     }
+
+    private fun isNetworkAvailable(): Boolean {
+        return connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork) != null
+    }
+
 
 }

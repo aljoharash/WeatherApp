@@ -4,7 +4,6 @@ import com.example.weatherapp.data.remote.source.dto.WeatherDto
 import com.example.weatherapp.data.util.Resource
 import com.example.weatherapp.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import javax.inject.Inject
 
 class GetWeatherUseCase @Inject constructor(

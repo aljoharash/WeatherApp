@@ -1,6 +1,5 @@
 package com.example.weatherapp.di
 
-import android.net.ConnectivityManager
 import com.example.weatherapp.data.remote.WeatherAPI
 import com.example.weatherapp.data.repository.WeatherRepositoryImp
 import com.example.weatherapp.data.util.NetworkUtil
@@ -17,8 +16,8 @@ object WeatherRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideWeatherRepository(api: WeatherAPI , connectivityManager: ConnectivityManager): WeatherRepository {
-        return WeatherRepositoryImp(api, connectivityManager)
+    fun provideWeatherRepository(api: WeatherAPI , networkUtil: NetworkUtil): WeatherRepository {
+        return WeatherRepositoryImp(api, networkUtil)
     }
 
 }
