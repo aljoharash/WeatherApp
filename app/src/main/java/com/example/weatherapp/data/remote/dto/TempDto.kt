@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.remote.source.dto
+package com.example.weatherapp.data.remote.dto
 
 data class TempDto(
     val day: Double ,

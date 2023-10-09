@@ -1,6 +1,5 @@
 package com.example.weatherapp.presentation.weatherScreen.view
 
-import WeatherAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

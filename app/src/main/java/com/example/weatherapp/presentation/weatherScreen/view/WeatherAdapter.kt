@@ -1,8 +1,9 @@
+package com.example.weatherapp.presentation.weatherScreen.view
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.databinding.WeatherListItemBinding
-import com.example.weatherapp.presentation.weatherScreen.view.ForecastData
 
 class WeatherAdapter(private val forecastData: List<ForecastData>) :
     RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {

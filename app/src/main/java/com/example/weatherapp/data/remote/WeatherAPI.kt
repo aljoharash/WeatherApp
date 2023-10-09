@@ -1,7 +1,7 @@
 package com.example.weatherapp.data.remote
 
 import com.example.weatherapp.data.util.NetworkConstant.API_KEY
-import com.example.weatherapp.data.remote.source.dto.WeatherDto
+import com.example.weatherapp.data.remote.dto.WeatherDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

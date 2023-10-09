@@ -1,7 +1,7 @@
 package com.example.weatherapp.data.repository
 
 import com.example.weatherapp.data.remote.WeatherAPI
-import com.example.weatherapp.data.remote.source.dto.WeatherDto
+import com.example.weatherapp.data.remote.dto.WeatherDto
 import com.example.weatherapp.data.util.NetworkUtil
 import com.example.weatherapp.data.util.Resource
 import com.example.weatherapp.domain.repository.WeatherRepository

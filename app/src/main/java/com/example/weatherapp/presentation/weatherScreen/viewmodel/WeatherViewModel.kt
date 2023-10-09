@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.common.LocationUtil
-import com.example.weatherapp.data.remote.source.dto.WeatherDto
+import com.example.weatherapp.data.remote.dto.WeatherDto
 import com.example.weatherapp.data.util.Resource
-import com.example.weatherapp.domain.repository.LocationRepository
+import com.example.weatherapp.domain.usecase.GetLocationUseCase
 import com.example.weatherapp.domain.usecase.GetWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val weatherUseCase: GetWeatherUseCase ,
-    private val locationTracker: LocationRepository ,
+    private val locationUseCase: GetLocationUseCase ,
     private val locationUtils: LocationUtil
 ) : ViewModel() {
 
@@ -42,10 +42,10 @@ class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             Log.d(
                 "USER_LOCATION" ,
-                "${locationTracker.getCurrentLocation()?.latitude}, ${locationTracker.getCurrentLocation()?.longitude} "
+                "${locationUseCase.invoke()?.latitude}, ${locationUseCase.invoke()?.longitude} "
             )
 
-            locationTracker.getCurrentLocation()?.let { location ->
+            locationUseCase.invoke()?.let { location ->
                 weatherUseCase(
                     location.latitude ,
                     location.longitude ,

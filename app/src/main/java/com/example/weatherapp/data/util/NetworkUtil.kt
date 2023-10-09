@@ -28,7 +28,7 @@ class NetworkUtil @Inject constructor(
             val errorMessage = when (e) {
                 is IOException -> "Network Error"
                 is HttpException -> getErrorMessage(e.code())
-                else -> "Unknown Error: ${e.message}"
+                else -> "Unknown Error"
             }
             emit(Resource.Failure(Exception(errorMessage)))
         }
@@ -37,11 +37,11 @@ class NetworkUtil @Inject constructor(
 
     private fun getErrorMessage(httpErrorCode: Int): String {
         return when (httpErrorCode) {
-            400 -> "Bad Request: The server could not understand the request."
-            401 -> "Unauthorized: Authentication failed or user does not have permissions."
-            404 -> "Not Found: The requested resource was not found on the server."
-            500 -> "Internal Server Error: Something went wrong on the server."
-            else -> "Unknown Error: An unexpected error occurred."
+            400 -> "Bad Request"
+            401 -> "Unauthorized"
+            404 -> "Not Found"
+            500 -> "Internal Server Error"
+            else -> "Unknown Error"
         }
     }
 

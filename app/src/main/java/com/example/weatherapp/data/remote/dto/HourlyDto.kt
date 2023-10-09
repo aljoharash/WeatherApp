@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.remote.source.dto
+package com.example.weatherapp.data.remote.dto
 
 data class HourlyDto(
     val clouds: Int ,
