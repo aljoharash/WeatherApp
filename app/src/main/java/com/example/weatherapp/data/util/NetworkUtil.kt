@@ -3,6 +3,7 @@ package com.example.weatherapp.data.util
 import android.net.ConnectivityManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.io.IOException
 import javax.inject.Inject
 
 class NetworkUtil @Inject constructor(
@@ -13,23 +14,22 @@ class NetworkUtil @Inject constructor(
         apiToBeCalled: suspend () -> T ,
     ): Flow<Resource<T>> = flow {
 
-        val response = apiToBeCalled.invoke()
+        val response = apiToBeCalled()
 
         try {
             emit(Resource.Loading)
             val networkInfo = connectivityManager.activeNetworkInfo
             if (networkInfo != null && networkInfo.type == ConnectivityManager.TYPE_WIFI) {
                 emit(Resource.Success(response))
-            }
-        } catch (ex: Exception) {
-            if(response.equals(3000)) {
+            } else {
                 emit(
-                    Resource.Failure(Exception("Unexpected Error"))
+                    Resource.Failure(Exception("Please check you Wi-Fi"))
                 )
             }
-            else if(response.equals(1000)){
-                emit(Resource.Failure(Exception("Network Error")))
-            }
+        } catch (ex: IOException) {
+            emit(
+                Resource.Failure(Exception("Unexpected Error"))
+            )
         }
     }
 

@@ -27,10 +27,5 @@ object APIModule {
             .create(WeatherAPI::class.java)
     }
 
-    @Singleton
-    @Provides
-    fun provideNetworkUtility(
-        connectivityManager: ConnectivityManager ,
-    ) = NetworkUtil(connectivityManager)
 }
 

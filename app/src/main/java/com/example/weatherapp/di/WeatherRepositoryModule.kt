@@ -17,8 +17,8 @@ object WeatherRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideWeatherRepository(api: WeatherAPI , networkUtil: NetworkUtil): WeatherRepository {
-        return WeatherRepositoryImp(api, networkUtil)
+    fun provideWeatherRepository(api: WeatherAPI , connectivityManager: ConnectivityManager): WeatherRepository {
+        return WeatherRepositoryImp(api, connectivityManager)
     }
 
 }
