@@ -2,7 +2,6 @@ package com.example.weatherapp.common
 
 import android.content.Context
 import android.location.Geocoder
-import com.example.weatherapp.data.util.Resource
 import java.util.Locale
 
 class LocationUtil(private val context: Context) {

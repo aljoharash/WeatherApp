@@ -1,7 +1,7 @@
 package com.example.weatherapp.domain.repository
 
 import com.example.weatherapp.data.remote.dto.WeatherDto
-import com.example.weatherapp.data.util.Resource
+import com.example.weatherapp.common.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {

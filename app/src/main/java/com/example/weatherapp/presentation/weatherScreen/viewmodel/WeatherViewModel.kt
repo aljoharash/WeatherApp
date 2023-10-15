@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.common.LocationUtil
 import com.example.weatherapp.data.remote.dto.WeatherDto
-import com.example.weatherapp.data.util.Resource
+import com.example.weatherapp.common.Resource
 import com.example.weatherapp.domain.usecase.GetLocationUseCase
 import com.example.weatherapp.domain.usecase.GetWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

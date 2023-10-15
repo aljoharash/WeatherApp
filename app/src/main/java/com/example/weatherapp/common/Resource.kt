@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.util
+package com.example.weatherapp.common
 
 import java.lang.Exception
 

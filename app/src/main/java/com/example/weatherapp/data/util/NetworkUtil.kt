@@ -1,6 +1,7 @@
 package com.example.weatherapp.data.util
 
 import android.net.ConnectivityManager
+import com.example.weatherapp.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

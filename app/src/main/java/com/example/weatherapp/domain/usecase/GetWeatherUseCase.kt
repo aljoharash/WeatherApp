@@ -1,7 +1,7 @@
 package com.example.weatherapp.domain.usecase
 
 import com.example.weatherapp.data.remote.dto.WeatherDto
-import com.example.weatherapp.data.util.Resource
+import com.example.weatherapp.common.Resource
 import com.example.weatherapp.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
