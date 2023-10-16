@@ -7,8 +7,7 @@ import java.util.Locale
 class LocationUtil(private val context: Context) {
 
     /*
-    This function is responsible for converting latitude and longitude coordinates
-    to get the City Name
+    This function converts latitude and longitude coordinates into a city name
     */
     @Suppress("DEPRECATION")
     fun getCityName(lat: Double , long: Double): String? {

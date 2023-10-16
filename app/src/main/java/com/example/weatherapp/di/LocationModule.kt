@@ -27,7 +27,7 @@ object LocationModule {
 
     @Provides
     @Singleton
-    fun providesLocationTracker(
+    fun provideLocationRepository(
         fusedLocationProviderClient: FusedLocationProviderClient ,
         application: Application
     ): LocationRepository = LocationRepositoryImp(
